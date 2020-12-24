@@ -3,30 +3,29 @@ import { makeObservable, observable, computed, action } from "mobx";
 class Store {
     cards = [];
 
-    constructor(cards) {
-        this.cards = cards
+    constructor(cards = []) {
+        this.cards = cards;
 
         makeObservable(this, {
             cards: observable,
             getCardsLength: computed,
-            increment: action
+            setCardsData: action
         })
     }
 
     get getCardsLength() {
-        return 'this.cards.length'
-        // return this.cards.length
+        return this.cards.length
     }
 
-    setCardsData() {
+    setCardsData = () => {
         const apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
         fetch(apiUrl).then(response => response.json())
             .then(data => {
-                this.cards.concat(data);
-                console.log('Result ' + this.cards)
+                console.log(data);
+                this.cards = data;
             })
             .catch(console.log);
     }
 }
 
-export default Store;
+export default new Store();

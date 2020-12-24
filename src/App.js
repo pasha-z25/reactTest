@@ -1,14 +1,14 @@
 import React from "react";
-import Store from "./store";
+import store from "./store";
 import { observer } from "mobx-react";
 
 function App() {
-  const { getCardsLength, cards } = Store;
+  // const store = new Store();
+  const { cards, setCardsData } = store;
   function getData() {
     console.log('work');
-
     console.log(cards);
-    console.log(getCardsLength);
+    setCardsData();
   }
   return (
     <div className="App" style={{padding: "25px", textAlign: "center"}}>
