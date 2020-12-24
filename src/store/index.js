@@ -17,11 +17,17 @@ class Store {
         return this.cards.length
     }
 
+    // setCardsData = async () => {
+    //     console.log(this);
+    //     const apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
+    //     this.cards = await fetch(apiUrl).then(response => response.json())
+    //         .catch(console.log);
+    // }
+
     setCardsData = () => {
         const apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
         fetch(apiUrl).then(response => response.json())
             .then(data => {
-                console.log(data);
                 this.cards = data;
             })
             .catch(console.log);
