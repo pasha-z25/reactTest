@@ -3,34 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "react-scripts": "4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.0.1",
-    "html-webpack-plugin": "^4.5.0",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
-    "prop-types": "^15.7.2",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.11.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "web-start": "webpack-dev-server --mode development --open --hot",
-    "web-build": "webpack --mode production"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,12 +32,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "@babel/env",
-      "@babel/react"
     ]
   }
 }
