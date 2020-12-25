@@ -1,15 +1,20 @@
 import { makeObservable, observable, computed, action } from "mobx";
 
 class Store {
+    apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
     cards = [];
+    modalState = false;
 
     constructor(cards = []) {
         this.cards = cards;
 
         makeObservable(this, {
             cards: observable,
+            modalState: observable,
             getCardsLength: computed,
-            setCardsData: action
+            getModalState: computed,
+            getDataFromApi: action,
+            setModal: action
         })
     }
 
@@ -17,20 +22,20 @@ class Store {
         return this.cards.length
     }
 
-    // setCardsData = async () => {
-    //     console.log(this);
-    //     const apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
-    //     this.cards = await fetch(apiUrl).then(response => response.json())
-    //         .catch(console.log);
-    // }
+    get getModalState() {
+        return this.modalState
+    }
 
-    setCardsData = () => {
-        const apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
-        fetch(apiUrl).then(response => response.json())
+    getDataFromApi = () => {
+        fetch(this.apiUrl).then(response => response.json())
             .then(data => {
                 this.cards = data;
             })
             .catch(console.log);
+    }
+
+    setModal = status => {
+        this.modalState = status;
     }
 }
 
