@@ -4,6 +4,7 @@ class Store {
     apiUrl = 'https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e';
     cards = [];
     modalState = false;
+    modalCard = [];
 
     constructor(cards = []) {
         this.cards = cards;
@@ -11,6 +12,7 @@ class Store {
         makeObservable(this, {
             cards: observable,
             modalState: observable,
+            modalCard: observable,
             getCardsLength: computed,
             getModalState: computed,
             getDataFromApi: action,
