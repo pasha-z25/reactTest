@@ -16,6 +16,8 @@ class Store {
             getCardsLength: computed,
             getModalState: computed,
             getDataFromApi: action,
+            addCardToModal: action,
+            clearModalCard: action,
             setModal: action
         })
     }
@@ -36,9 +38,11 @@ class Store {
             .catch(console.log);
     }
 
-    setModal = status => {
-        this.modalState = status;
-    }
+    setModal = status => this.modalState = status;
+
+    addCardToModal = item => this.modalCard.push(item)
+
+    clearModalCard = () => this.modalCard = [];
 }
 
 export default new Store();
