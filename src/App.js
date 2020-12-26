@@ -24,17 +24,17 @@ class App extends React.Component {
       }
     }
 
-    let { cards, setModal } = store;
-
-    function showModal() {
-      setModal(true);
-    }
+    let { cards, setModal, addCardToModal } = store;
 
     function getMinValue() {
       let min = cards.reduce((min, item) => item.price < min ? item.price : min, cards[0].price);
-      console.log(min);
       let fruit = cards.filter( item => item.price === min );
-      console.log(fruit[0]);
+      return fruit[0];
+    }
+
+    function buyCheapest () {
+      addCardToModal(getMinValue());
+      setModal(true);
     }
 
     return(
@@ -43,10 +43,8 @@ class App extends React.Component {
           return <Card oneCard={ oneCard } key={ index }/>
         })}
 
-        <button onClick={ getMinValue }>Buy cheapest</button>
-        <button onClick={ showModal }>Show Modal</button>
-
-        <Modal/>
+        <button className="btn btn-default wide" onClick={ buyCheapest }>Buy cheapest</button>
+        <Modal />
       </div>
     )
   }
