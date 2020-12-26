@@ -1,8 +1,8 @@
 import React from "react";
 import store from "./store";
 import { observer } from "mobx-react";
-import Card from './components/card';
-import Modal from './components/modal';
+import Card from './components/Card';
+import Modal from './components/Modal';
 
 class App extends React.Component {
 
