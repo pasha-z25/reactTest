@@ -30,11 +30,11 @@ code {
     monospace;
 }
 sup {
-  font-size: smaller;
+  font-size: 0.5em;
   vertical-align: super;
 }
 sub {
-  font-size: smaller;
+  font-size: 0.5em;
   vertical-align: sub;
 }
 .transition {
@@ -43,6 +43,9 @@ sub {
   -ms-transition: all linear 0.2s;
   -o-transition: all linear 0.2s;
   transition: all linear 0.2s;
+}
+.w-100 {
+  width: 100%;
 }
 .btn {
   display: inline-block;
@@ -92,22 +95,43 @@ sub {
 .text-center {
   text-align: center;
 }
-.card .btn {
-  font-weight: 500;
-  text-transform: uppercase;
-}
 .card {
   padding: 32px;
   background-color: #FFFFFF;
   border-radius: 24px;
   width: 100%;
-  max-width: 250px;
+  max-width: 350px;
   margin: 20px;
   cursor: pointer;
 }
 .card:hover {
-  /*box-shadow: 5px 5px 15px 0 var(--basic-color);*/
   box-shadow: 24px 24px 40px rgba(75, 207, 160, 0.08);
+}
+.modal-item .category,
+.card .category {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.modal-item .name,
+.card .name {
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.modal-item .price,
+.card .price {
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: -0.02em;
+}
+.card .btn {
+  float: right;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 20px;
 }
 .card:hover .btn {
   color: #FFFFFF;
@@ -156,4 +180,68 @@ sub {
 .modal-body .close:hover {
   color: rgba(0, 0, 0, 1);
   transform: rotate(180deg);
+}
+.modal-body .oneItem {
+  margin-bottom: 30px;
+}
+.form-group {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+}
+.form-group .input {
+  width: 100%;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+.form-group .input:focus {
+  border-color: var(--basic-color);
+}
+.form-group .clear,
+.form-group .warning {
+  display: none;
+  position: absolute;
+}
+.form-group .clear {
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #FFFFFF;
+  background-color: #E43F3F;
+}
+.form-group .warning {
+  top: 100%;
+  left: 0;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: #E43F3F;
+}
+.form-group.error .input {
+  border-color: #E43F3F;
+}
+.submitBtn {
+  box-shadow: unset !important;
+}
+.submitBtn::after {
+  font-family: 'icomoon';
+  content: "\ea3c";
+  transition: all 0.2s linear;
+  opacity: 0;
+  margin-left: -13px;
+}
+.submitBtn:hover::after {
+  opacity: 1;
+  margin-left: 8px;
 }
