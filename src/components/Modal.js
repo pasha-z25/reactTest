@@ -16,24 +16,30 @@ class Modal extends React.Component {
     }
 
     validateName = () => {
+        let errors = [];
         if (this.state.name.trim() === '') {
-            this.state.nameErrors.push('This field in required')
+            errors.push('This field in required');
         }
         if ( !(/^[a-zA-Zа-яА-Я]*$/.test(this.state.name)) && this.state.name.length ) {
-            this.state.nameErrors.push('Only letters allowed')
+            errors.push('Only letters allowed');
         }
+        this.setState({nameErrors: errors})
+        return !errors.length;
     }
 
     validateNumber = () => {
+        let errors = [];
         if (this.state.number.trim() === '') {
-            this.state.numberErrors.push('This field in required')
+            errors.push('This field in required');
         }
         if ( !(/^[0-9]*$/.test(this.state.number)) && this.state.number.length ) {
-            this.state.numberErrors.push('Only numbers allowed')
+            errors.push('Only numbers allowed');
         }
-        if (this.state.number.length !== 12) {
-            this.state.numberErrors.push('Should contain 12 characters')
+        if (this.state.number.length > 0 && this.state.number.length !== 12) {
+            errors.push('Should contain 12 characters')
         }
+        this.setState({numberErrors: errors})
+        return !errors.length;
     }
 
     onInputChange = (e) => {
@@ -44,7 +50,6 @@ class Modal extends React.Component {
 
     clearErrors = (e) => {
         const name = e.target.name;
-        console.log('focus ' + name )
         if (name === 'name') {
             this.setState({ nameErrors: []})
         }
@@ -54,19 +59,28 @@ class Modal extends React.Component {
     }
 
     validateForm = () => {
-        return true;
+        let name = this.validateName()
+        let number = this.validateNumber()
+        return (name && number)
     }
 
     submitForm = (e) => {
         e.preventDefault();
+
         if (this.validateForm()) {
-            console.log('Success')
+            let result = [{
+                name: this.state.name,
+                number: this.state.number
+            }, ...store.modalCard ]
+            console.log(result)
         } else {
-            console.log('No valid')
+            console.error('Some form fields are not valid. Please fill out the form correctly.')
         }
     }
 
     hideModal = () => {
+        this.setState({ nameErrors: []})
+        this.setState({ numberErrors: []})
         store.setModal(false);
         store.clearModalCard();
     }
@@ -104,12 +118,9 @@ class Modal extends React.Component {
                                onFocus={ this.clearErrors }
                     />
 
-                    <span className="w-100">{` ${this.state.name} and ${this.state.number} `}</span>
-
                     <div className="text-center">
                         <button className="btn btn-default w-100 submitBtn uppercase" type="submit">Order</button>
                     </div>
-
                 </form>
             </div>
         );
