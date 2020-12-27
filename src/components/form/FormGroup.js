@@ -6,16 +6,25 @@ class FormGroup extends React.Component {
     render(props) {
 
         return (
-            <label className={`form-group ${ this.props.onError ? 'error' : '' }`}>
+            <label className={`form-group ${ this.props.onError.length ? 'error' : '' }`}>
+
                 <span className="clear">&times;</span>
                 <input
                     className="input"
                     type={this.props.type || 'text'}
                     name={this.props.name || 'name'}
+                    placeholder={this.props.placeholder || ''}
                     value={this.props.value || ''}
-                    onChange={ this.props.onChange || false }
+                    onChange={ this.props.onChange }
+                    onBlur={ this.props.onBlur }
                 />
-                <span className="warning">&nbsp;</span>
+                <span className="warning">
+                 { this.props.onError.map( (item, index) => {
+                     return (
+                         <span key={index}>{ item }<br/></span>
+                     )
+                 })}
+                </span>
             </label>
         );
     }
