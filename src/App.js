@@ -7,43 +7,46 @@ import Modal from './components/Modal';
 class App extends React.Component {
 
   componentDidMount() {
-    const { getDataFromApi } = store;
-      getDataFromApi();
-    }
+    store.getDataFromApi();
+  }
+
+  getMinValue = () => {
+    let min = store.cards.reduce((min, item) => item.price < min ? item.price : min, store.cards[0].price);
+    let card = store.cards.filter( item => item.price === min );
+    return card[0];
+  }
+
+  buyCheapest = () => {
+    let { setModal, addCardToModal } = store;
+
+    addCardToModal(this.getMinValue());
+    setModal(true);
+  }
 
   render() {
     const styles = {
       app: {
-        maxWidth: '1190px',
+        maxWidth: '1200px',
         marginLeft: 'auto',
         marginRight: 'auto',
-        paddingLeft: '15px',
-        paddingRight: '15px',
+        padding: '40px 15px',
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+      },
+      btn: {
+        marginTop: '40px',
       }
-    }
-
-    let { cards, setModal, addCardToModal } = store;
-
-    function getMinValue() {
-      let min = cards.reduce((min, item) => item.price < min ? item.price : min, cards[0].price);
-      let fruit = cards.filter( item => item.price === min );
-      return fruit[0];
-    }
-
-    function buyCheapest () {
-      addCardToModal(getMinValue());
-      setModal(true);
     }
 
     return(
       <div className="App" style={styles.app}>
-        { cards.map( (oneCard, index) => {
+        { store.cards.map( (oneCard, index) => {
           return <Card oneCard={ oneCard } key={ index }/>
         })}
-
-        <button className="btn btn-default wide" onClick={ buyCheapest }>Buy cheapest</button>
+        <div className="text-center w-100">
+          <button className="btn btn-default wide" onClick={ this.buyCheapest } style={styles.btn}>Buy cheapest</button>
+        </div>
         <Modal />
       </div>
     )
