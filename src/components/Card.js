@@ -4,26 +4,27 @@ import { observer } from "mobx-react";
 
 class Card extends React.Component {
 
+    getCurrentCard = () => {
+        let current = store.cards.filter( item => item.name === this.props.oneCard.name);
+        return current[0];
+    }
+
+    buyThisCard = () => {
+        let { setModal, addCardToModal } = store;
+
+        addCardToModal(this.getCurrentCard());
+        setModal(true);
+    }
+
     render(props) {
         let oneCard = this.props.oneCard
-        let { cards, setModal, addCardToModal } = store;
-
-        function getCurrentCard() {
-            let current = cards.filter( item => item.name === oneCard.name);
-            return current[0];
-        }
-
-        function buyThisCard () {
-            addCardToModal(getCurrentCard());
-            setModal(true);
-        }
 
         return (
-            <div className="card transition" onClick={ buyThisCard }>
-                <p>{ oneCard.category }</p>
-                <p>{ oneCard.name }</p>
-                <p><sup>$</sup>{ oneCard.price }</p>
+            <div className="card transition" onClick={ this.buyThisCard }>
+                <p className="category uppercase">{ oneCard.category }</p>
+                <p className="name capitalize">{ oneCard.name }</p>
                 <button className="btn uppercase">Buy</button>
+                <p className="price"><sup>$</sup>{ oneCard.price }</p>
             </div>
         );
     }
