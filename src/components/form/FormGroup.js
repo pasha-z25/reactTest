@@ -19,7 +19,7 @@ class FormGroup extends React.Component {
                     onBlur={ this.props.onBlur }
                     onFocus={ this.props.onFocus }
                 />
-                <span className="warning">
+                <span className="warning" style={{ textAlign: 'left' }}>
                  { this.props.onError.map( (item, index) => {
                      return (
                          <span key={index}>{ item }<br/></span>
