@@ -17,6 +17,7 @@ class FormGroup extends React.Component {
                     value={this.props.value || ''}
                     onChange={ this.props.onChange }
                     onBlur={ this.props.onBlur }
+                    onFocus={ this.props.onFocus }
                 />
                 <span className="warning">
                  { this.props.onError.map( (item, index) => {

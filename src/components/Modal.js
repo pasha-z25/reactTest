@@ -40,6 +40,11 @@ class Modal extends React.Component {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({[name]: value});
+    }
+
+    clearErrors = (e) => {
+        const name = e.target.name;
+        console.log('focus ' + name )
         if (name === 'name') {
             this.setState({ nameErrors: []})
         }
@@ -88,6 +93,7 @@ class Modal extends React.Component {
                                onError={this.state.nameErrors}
                                onChange={ this.onInputChange }
                                onBlur={ this.validateName }
+                               onFocus={ this.clearErrors }
                     />
 
                     <FormGroup type={"tel"} name={"number"} placeholder={"Number"}
@@ -95,6 +101,7 @@ class Modal extends React.Component {
                                onError={this.state.numberErrors}
                                onChange={ this.onInputChange }
                                onBlur={ this.validateNumber }
+                               onFocus={ this.clearErrors }
                     />
 
                     <span className="w-100">{` ${this.state.name} and ${this.state.number} `}</span>
