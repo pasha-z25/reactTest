@@ -228,6 +228,10 @@ sub {
   letter-spacing: -0.02em;
   color: #E43F3F;
 }
+.form-group.error .clear,
+.form-group.error .warning {
+  display: block;
+}
 .form-group.error .input {
   border-color: #E43F3F;
 }
