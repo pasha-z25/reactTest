@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+#Тестовое на ReactJS
+##Задача:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Нужно написать React приложение, которое получает список товаров с сервера и выводит его на страницу. При клике на товар открывается модальное окно с формой в которую пользователь должен ввести свое имя и номер телефона.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Создать проект на ReactJS + Webpack. Можно `create-react-app`
+2. В проекте сверстать страницу Cards и Модальное окно: [https://www.figma.com/file/yPQsftMIwgUJmGad6jc0MV/Test?node-id=0%3A1](https://www.figma.com/file/yPQsftMIwgUJmGad6jc0MV/Test?node-id=0%3A1)
+    - Обязательно разбить страницу на компоненты, в остальном архитектура проекта на ваше усмотрение
+    - Визуально верстка должна быть приближена к дизайну, но pixel perfect не нужен.
+    - Нужна верстка для мобильных, ее нужно сделать без макета, дизайн на ваше усмотрение
+    - Стейты для элементов нужно взять из блока States, если каких стейтов не хватает - сделайте их на свое усмотрение.
+3. Получить список карточек с сервера: [https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e](https://run.mocky.io/v3/b7d36eea-0b3f-414a-ba44-711b5f5e528e) и вывести эти данные в верстку
+4. При клике на карточку должно открываться модальное окно покупки товара. Есть на макете.
+5. При клике на **Buy cheapest** нужно открывать модальное окно покупки самого дешевого товара.
+6. Поля в модальном окне должны валидироваться. Для валидации нельзя использовать готовые библиотеки. Как работает валидация:
+    - Валидация должна срабатывать в двух случаях:
+        - Когда юзер ввел невалидные данные и убрал фокус с поля, мы показываем невалидное состояние для этого поля.
+        - Когда юзер не заполнил обязательные поля и нажал кнопку Submit, мы показываем невалидное состояние для всех пустых обязательных полей и для всех полей которые заполнены некорректно
+    - Когда юзер начал заполнять данные в невалидном поле - невалидный стейт нужно убрать
+    - Правила валидации:
+        - Поле **Name**
+            - Считается невалидным, если осталось незаполненным. Текст ошибки: "This field in required"
+            - Должно содержать только буквы. Текст ошибки: "Only letters allowed"
+        - Поля **Phone number**
+            - Считается невалидным, если остались незаполненным. Текст ошибки: "This field in required"
+            - Должно содержать только цифры. Текст ошибки: "Only numbers allowed"
+            - Должно содержать 12 символов. Текст ошибки: "Should contain 12 characters"
+    - Если все поля корректно заполнены, после нажатия на Submit данные формы должны выводиться в консоль
+7. И верстка и JS должны корректно работать в последних версиях Chrome, Firefox и Edge.
